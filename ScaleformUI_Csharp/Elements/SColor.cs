@@ -1,6 +1,7 @@
 ﻿using CitizenFX.Core.Native;
 using ScaleformUI.Scaleforms;
 using System.Drawing;
+using static CitizenFX.FiveM.Native.Natives;
 
 namespace ScaleformUI.Elements
 {
@@ -409,7 +410,7 @@ namespace ScaleformUI.Elements
         public static SColor FromHudColor(HudColor color)
         {
             int r = 0, g = 0, b = 0, a = 0;
-            API.GetHudColour((int)color, ref r, ref g, ref b, ref a);
+            GetHudColour((int)color, ref r, ref g, ref b, ref a);
             return FromArgb(a, r, g, b);
         }
 

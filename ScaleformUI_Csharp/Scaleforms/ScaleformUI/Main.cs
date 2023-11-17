@@ -1,6 +1,7 @@
 ﻿using CitizenFX.Core;
-using CitizenFX.Core.Native;
+using static CitizenFX.FiveM.Native.Natives;
 using ScaleformUI.Scaleforms;
+using CitizenFX.FiveM;
 
 namespace ScaleformUI
 {
@@ -9,7 +10,7 @@ namespace ScaleformUI
         /// <summary>
         /// Provides the current game time in milliseconds.
         /// </summary>
-        public static int GameTime = API.GetNetworkTimeAccurate();
+        public static int GameTime = GetNetworkTimeAccurate();
 
         public static PauseMenuScaleform PauseMenu { get; internal set; }
         public static MediumMessageHandler MedMessageInstance { get; internal set; }
@@ -49,13 +50,13 @@ namespace ScaleformUI
             MinimapOverlays.Load();
             EventHandlers["onResourceStop"] += new Action<string>((resName) =>
             {
-                if (resName == API.GetCurrentResourceName())
+                if (resName == GetCurrentResourceName())
                 {
-                    if (Game.IsPaused && API.GetCurrentFrontendMenuVersion() == -2060115030)
+                    if (Game.IsPaused && GetCurrentFrontendMenuVersion() == -2060115030)
                     {
-                        API.ActivateFrontendMenu((uint)Game.GenerateHash("FE_MENU_VERSION_EMPTY_NO_BACKGROUND"), false, -1);
-                        API.AnimpostfxStop("PauseMenuIn");
-                        API.AnimpostfxPlay("PauseMenuOut", 800, false);
+                        ActivateFrontendMenu((uint)Game.GenerateHash("FE_MENU_VERSION_EMPTY_NO_BACKGROUND"), false, -1);
+                        AnimpostfxStop("PauseMenuIn");
+                        AnimpostfxPlay("PauseMenuOut", 800, false);
                     }
                     radialMenu?.CallFunction("CLEAR_ALL");
                     radialMenu?.Dispose();
@@ -68,9 +69,9 @@ namespace ScaleformUI
             });
         }
 
-        private async Task ScaleformUIThread_Tick()
+        private async Coroutine ScaleformUIThread_Tick()
         {
-            if (MenuHandler.ableToDraw && !(API.IsWarningMessageActive() || Warning.IsShowing))
+            if (MenuHandler.ableToDraw && !(IsWarningMessageActive() || Warning.IsShowing))
                 MenuHandler.ProcessMenus();
             if (Warning._sc != null)
                 Warning.Update();
@@ -100,9 +101,9 @@ namespace ScaleformUI
         /// Updates the game time.
         /// </summary>
         /// <returns></returns>
-        public async Task OnUpdateGlobalGameTimerAsync()
+        public async Coroutine OnUpdateGlobalGameTimerAsync()
         {
-            GameTime = API.GetNetworkTimeAccurate();
+            GameTime = GetNetworkTimeAccurate();
         }
     }
 }

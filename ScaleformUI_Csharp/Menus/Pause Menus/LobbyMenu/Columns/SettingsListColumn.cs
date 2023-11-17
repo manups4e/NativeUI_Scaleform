@@ -2,7 +2,7 @@
 using ScaleformUI.Elements;
 using ScaleformUI.Menu;
 using ScaleformUI.PauseMenu;
-using static CitizenFX.Core.Native.API;
+using static CitizenFX.FiveM.Native.Natives;
 
 namespace ScaleformUI.LobbyMenu
 {

@@ -1,7 +1,7 @@
 ﻿using CitizenFX.Core;
 using ScaleformUI.Elements;
 using ScaleformUI.Menu;
-using static CitizenFX.Core.Native.API;
+using static CitizenFX.FiveM.Native.Natives;
 
 namespace ScaleformUI.Scaleforms
 {

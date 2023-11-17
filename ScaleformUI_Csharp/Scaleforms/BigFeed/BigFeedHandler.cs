@@ -1,5 +1,5 @@
 ﻿using CitizenFX.Core;
-using static CitizenFX.Core.Native.API;
+using static CitizenFX.FiveM.Native.Natives;
 
 namespace ScaleformUI.Scaleforms
 {

@@ -1,9 +1,10 @@
 ﻿using CitizenFX.Core.Native;
-using CitizenFX.Core.UI;
+using CitizenFX.FiveM.GUI;
 using System;
 using System.Drawing;
 using System.IO;
 using System.Reflection;
+using static CitizenFX.FiveM.Native.Natives;
 
 namespace ScaleformUI
 {
@@ -70,8 +71,8 @@ namespace ScaleformUI
         public void Draw()
         {
             if (!Visible) return;
-            if (!API.HasStreamedTextureDictLoaded(TextureDict))
-                API.RequestStreamedTextureDict(TextureDict, true);
+            if (!HasStreamedTextureDictLoaded(TextureDict))
+                RequestStreamedTextureDict(TextureDict, true);
 
             int screenw = Screen.Resolution.Width;
             int screenh = Screen.Resolution.Height;
@@ -85,13 +86,13 @@ namespace ScaleformUI
             float x = (Position.X / width) + w * 0.5f;
             float y = (Position.Y / height) + h * 0.5f;
 
-            API.DrawSprite(TextureDict, TextureName, x, y, w, h, Heading, Color.R, Color.G, Color.B, Color.A);
+            DrawSprite(TextureDict, TextureName, x, y, w, h, Heading, Color.R, Color.G, Color.B, Color.A);
         }
 
         public static void Draw(string dict, string name, float xpos, float ypos, float boxWidth, float boxHeight, float rotation, Color color)
         {
-            if (!API.HasStreamedTextureDictLoaded(dict))
-                API.RequestStreamedTextureDict(dict, true);
+            if (!HasStreamedTextureDictLoaded(dict))
+                RequestStreamedTextureDict(dict, true);
 
             int screenw = Screen.Resolution.Width;
             int screenh = Screen.Resolution.Height;
@@ -105,7 +106,7 @@ namespace ScaleformUI
             float x = (xpos / width) + w * 0.5f;
             float y = (ypos / height) + h * 0.5f;
 
-            API.DrawSprite(dict, name, x, y, w, h, rotation, color.R, color.G, color.B, color.A);
+            DrawSprite(dict, name, x, y, w, h, rotation, color.R, color.G, color.B, color.A);
         }
 
         /*

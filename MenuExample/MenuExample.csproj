@@ -34,9 +34,14 @@
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CitizenFX.Core.Client, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\CitizenFX.Core.Client.1.0.6370\lib\net45\CitizenFX.Core.Client.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="CitizenFX.Core">
+      <HintPath>..\..\vMenu Revamped\CitizenFX.Natives\Client\CitizenFX.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="CitizenFX.FiveM">
+      <HintPath>..\..\vMenu Revamped\CitizenFX.Natives\Client\CitizenFX.FiveM.dll</HintPath>
+    </Reference>
+    <Reference Include="CitizenFX.FiveM.Native">
+      <HintPath>..\..\vMenu Revamped\CitizenFX.Natives\Client\CitizenFX.FiveM.Native.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -57,9 +62,6 @@
       <Project>{f5614594-90fd-4f4c-9c68-c9dc90060f8d}</Project>
       <Name>ScaleformUI</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

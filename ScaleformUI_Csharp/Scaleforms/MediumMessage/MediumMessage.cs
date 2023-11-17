@@ -1,4 +1,5 @@
 ﻿using CitizenFX.Core;
+using CitizenFX.FiveM;
 
 namespace ScaleformUI.Scaleforms
 {

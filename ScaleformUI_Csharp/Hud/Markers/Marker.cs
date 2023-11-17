@@ -1,6 +1,7 @@
 ﻿using CitizenFX.Core;
+using CitizenFX.FiveM;
 using ScaleformUI.Elements;
-using static CitizenFX.Core.Native.API;
+using static CitizenFX.FiveM.Native.Natives;
 
 namespace ScaleformUI
 {
@@ -94,7 +95,7 @@ namespace ScaleformUI
                 if (GetGroundZFor_3dCoord(Position.X, Position.Y, Position.Z, ref _height, false))
                     Position = new Vector3(Position.X, Position.Y, _height + 0.03f);
             }
-            World.DrawMarker(MarkerType, Position, Direction, Rotation, Scale, Color.ToColor(), BobUpDown, FaceCamera, Rotate);
+            World.DrawMarker(MarkerType, Position, Direction, Rotation, Scale, (Color)Color.ToColor().ToArgb(), BobUpDown, FaceCamera, Rotate);
             if (CheckZ)
             {
                 float distanceSquared = Position.DistanceToSquared(MenuHandler.PlayerPed.Position);

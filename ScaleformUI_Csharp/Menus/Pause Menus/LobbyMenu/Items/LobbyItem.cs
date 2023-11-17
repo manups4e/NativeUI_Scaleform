@@ -1,7 +1,8 @@
 ﻿using CitizenFX.Core;
-using CitizenFX.Core.Native;
+using static CitizenFX.FiveM.Native.Natives;
 using ScaleformUI.LobbyMenu;
 using ScaleformUI.PauseMenu;
+using CitizenFX.FiveM;
 
 namespace ScaleformUI
 {
@@ -78,7 +79,7 @@ namespace ScaleformUI
                 if (clonePed != null)
                     CreateClonedPed();
                 else
-                    API.ClearPedInPauseMenu();
+                    ClearPedInPauseMenu();
             }
         }
 
@@ -90,7 +91,7 @@ namespace ScaleformUI
                 _clonePedAsleep = value;
                 // Don't ask me why its in reverse, it just is.
                 // They should have called it SetPauseMenuPedAwakeState
-                API.SetPauseMenuPedSleepState(!_clonePedAsleep);
+                SetPauseMenuPedSleepState(!_clonePedAsleep);
             }
         }
 
@@ -100,7 +101,7 @@ namespace ScaleformUI
             set
             {
                 _clonePedLighting = value;
-                API.SetPauseMenuPedLighting(_clonePedLighting);
+                SetPauseMenuPedLighting(_clonePedLighting);
             }
         }
 
@@ -167,20 +168,20 @@ namespace ScaleformUI
             }
 
             // clone the ped we cached away for the pause menu
-            _clonePed = new Ped(API.ClonePed(ClonePed.Handle, 0, true, true));
+            _clonePed = new Ped(ClonePed(ClonePed.Handle, false, true, true));
             await BaseScript.Delay(1);
             HidePed(_clonePed);
-            API.GivePedToPauseMenu(_clonePed.Handle, 2);
-            API.SetPauseMenuPedSleepState(!_clonePedAsleep);
+            GivePedToPauseMenu(_clonePed.Handle, 2);
+            SetPauseMenuPedSleepState(!_clonePedAsleep);
             if (ParentColumn != null && ParentColumn.Parent != null && ParentColumn.Parent.Visible)
             {
                 if (ParentColumn.Parent is MainView lobby)
                 {
-                    API.SetPauseMenuPedLighting(_clonePedLighting);
+                    SetPauseMenuPedLighting(_clonePedLighting);
                 }
                 else if (ParentColumn.Parent is TabView pause)
                 {
-                    API.SetPauseMenuPedLighting(_clonePedLighting && pause.FocusLevel > 0);
+                    SetPauseMenuPedLighting(_clonePedLighting && pause.FocusLevel > 0);
                 }
             }
         }

@@ -1,4 +1,4 @@
-﻿using CitizenFX.Core.Native;
+﻿using static CitizenFX.FiveM.Native.Natives;
 using ScaleformUI.Scaleforms;
 
 namespace ScaleformUI.PauseMenus
@@ -32,12 +32,12 @@ namespace ScaleformUI.PauseMenus
         }
         public virtual void Draw()
         {
-            API.DisableControlAction(0, 199, true);
-            API.DisableControlAction(0, 200, true);
-            API.DisableControlAction(1, 199, true);
-            API.DisableControlAction(1, 200, true);
-            API.DisableControlAction(2, 199, true);
-            API.DisableControlAction(2, 200, true);
+            DisableControlAction(0, 199, true);
+            DisableControlAction(0, 200, true);
+            DisableControlAction(1, 199, true);
+            DisableControlAction(1, 200, true);
+            DisableControlAction(2, 199, true);
+            DisableControlAction(2, 200, true);
         }
     }
 }

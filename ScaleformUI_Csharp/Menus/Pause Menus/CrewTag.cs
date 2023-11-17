@@ -21,7 +21,7 @@ namespace ScaleformUI.PauseMenus
         {
             TAG = "";
         }
-        public CrewTag(string tag, bool crewTypeIsPrivate, bool crewTagContainsRockstar, CrewHierarchy level, Color crewColor)
+        public CrewTag(string tag, bool crewTypeIsPrivate, bool crewTagContainsRockstar, CrewHierarchy level, CitizenFX.Core.Color crewColor)
         {
             try
             {

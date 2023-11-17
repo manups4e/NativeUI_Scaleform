@@ -1,5 +1,5 @@
 ﻿using CitizenFX.Core;
-using CitizenFX.Core.Native;
+using static CitizenFX.FiveM.Native.Natives;
 
 namespace ScaleformUI.Scaleforms
 {
@@ -64,7 +64,7 @@ namespace ScaleformUI.Scaleforms
             _sc.Dispose();
             _sc = null;
             for (int x = 0; x < 1024; x++) // cleaning up in case of a reload, this frees up all ped headshot handles :)
-                API.UnregisterPedheadshot(x);
+                UnregisterPedheadshot(x);
         }
 
         public void SetTitle(string left, string right, int icon)
@@ -126,7 +126,7 @@ namespace ScaleformUI.Scaleforms
 
         internal void Update()
         {
-            API.DrawScaleformMovie(_sc.Handle, 0.122f, 0.3f, 0.28f, 0.6f, 255, 255, 255, 255, 0);
+            DrawScaleformMovie(_sc.Handle, 0.122f, 0.3f, 0.28f, 0.6f, 255, 255, 255, 255, 0);
             if (_start != 0 && Main.GameTime - _start > _timer)
             {
                 CurrentPage = 0;

@@ -15,13 +15,13 @@ namespace ScaleformUI
             Tick += MainHandler;
         }
 
-        public async Task MainHandler()
+        public async Coroutine MainHandler()
         {
             if (_markerList.Count == 0) return;
 
             for (int i = 0; i < FilterMarkers().Count; i++)
                 FilterMarkers()[i].Draw();
-            await Task.FromResult(0);
+            await WaitUntilNextFrame(); ;
         }
 
         private List<Marker> FilterMarkers() => _markerList.Where(x => MenuHandler.PlayerPed.IsInRangeOf(x.Position, x.Distance)).ToList();

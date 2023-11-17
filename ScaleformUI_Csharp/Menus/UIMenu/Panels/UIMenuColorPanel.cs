@@ -1,5 +1,5 @@
 ﻿using CitizenFX.Core;
-using CitizenFX.Core.Native;
+using static CitizenFX.FiveM.Native.Natives;
 using ScaleformUI.Elements;
 
 namespace ScaleformUI.Menu
@@ -73,12 +73,12 @@ namespace ScaleformUI.Menu
         {
             int it = this.ParentItem.Parent.Pagination.GetScaleformIndex(this.ParentItem.Parent.MenuItems.IndexOf(this.ParentItem));
             int van = this.ParentItem.Panels.IndexOf(this);
-            API.BeginScaleformMovieMethod(Main.scaleformUI.Handle, "GET_VALUE_FROM_PANEL");
-            API.ScaleformMovieMethodAddParamInt(it);
-            API.ScaleformMovieMethodAddParamInt(van);
-            int ret = API.EndScaleformMovieMethodReturnValue();
-            while (!API.IsScaleformMovieMethodReturnValueReady(ret)) await BaseScript.Delay(0);
-            _value = API.GetScaleformMovieMethodReturnValueInt(ret);
+            BeginScaleformMovieMethod(Main.scaleformUI.Handle, "GET_VALUE_FROM_PANEL");
+            ScaleformMovieMethodAddParamInt(it);
+            ScaleformMovieMethodAddParamInt(van);
+            int ret = EndScaleformMovieMethodReturnValue();
+            while (!IsScaleformMovieMethodReturnValueReady(ret)) await BaseScript.Delay(0);
+            _value = GetScaleformMovieMethodReturnValueInt(ret);
         }
 
         public void _setValue(int val)

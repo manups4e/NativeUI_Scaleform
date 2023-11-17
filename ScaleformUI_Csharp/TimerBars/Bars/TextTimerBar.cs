@@ -1,7 +1,8 @@
-﻿using CitizenFX.Core.UI;
+﻿using CitizenFX.Core;
+using CitizenFX.FiveM.GUI;
 using ScaleformUI.Elements;
 using System.Drawing;
-using Font = CitizenFX.Core.UI.Font;
+using Font = CitizenFX.FiveM.GUI.Font;
 
 namespace ScaleformUI
 {
@@ -24,17 +25,17 @@ namespace ScaleformUI
             Caption = text;
             CaptionFont = captionFont;
         }
-        public TextTimerBar(string label, string text, Color captionColor) : base(label)
+        public TextTimerBar(string label, string text, System.Drawing.Color captionColor) : base(label)
         {
             Caption = text;
             CaptionColor = SColor.FromColor(captionColor);
         }
-        public TextTimerBar(string label, string text, Color captionColor, Font labelFont) : base(label, labelFont)
+        public TextTimerBar(string label, string text, System.Drawing.Color captionColor, Font labelFont) : base(label, labelFont)
         {
             Caption = text;
             CaptionColor = SColor.FromColor(captionColor);
         }
-        public TextTimerBar(string label, string text, Color captionColor, Font labelFont, Font captionFont) : base(label, labelFont)
+        public TextTimerBar(string label, string text, System.Drawing.Color captionColor, Font labelFont, Font captionFont) : base(label, labelFont)
         {
             Caption = text;
             CaptionColor = SColor.FromColor(captionColor);
@@ -48,7 +49,7 @@ namespace ScaleformUI
             PointF safe = ScreenTools.SafezoneBounds;
 
             base.Draw(interval);
-            new UIResText(Caption, new PointF((int)res.Width - safe.X - 10, (int)res.Height - safe.Y - (42 + (4 * interval))), 0.5f, CaptionColor.ToColor(), LabelFont, Alignment.Right).Draw();
+            new UIResText(Caption, new Vector2((int)res.Width - safe.X - 10, (int)res.Height - safe.Y - (42 + (4 * interval))), 0.5f, new CitizenFX.Core.Color(CaptionColor.ToColor().ToArgb()), LabelFont, Alignment.Right).Draw();
         }
     }
 }

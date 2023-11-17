@@ -1,5 +1,5 @@
 ﻿using CitizenFX.Core;
-using CitizenFX.Core.Native;
+using static CitizenFX.FiveM.Native.Natives;
 
 namespace ScaleformUI.Scaleforms
 {
@@ -34,23 +34,23 @@ namespace ScaleformUI.Scaleforms
                 DisplayCountdown();
 
             int r = 255, g = 255, b = 255, a = 255;
-            API.GetHudColour((int)hudColor, ref r, ref g, ref b, ref a);
+            GetHudColour((int)hudColor, ref r, ref g, ref b, ref a);
 
             int gameTime = Main.GameTime;
 
             while (number >= 0)
             {
                 await BaseScript.Delay(0);
-                if ((API.GetNetworkTimeAccurate() - gameTime) > 1000)
+                if ((GetNetworkTimeAccurate() - gameTime) > 1000)
                 {
-                    API.PlaySoundFrontend(-1, countdownAudioName, countdownAudioRef, true);
+                    PlaySoundFrontend(-1, countdownAudioName, countdownAudioRef, true);
                     gameTime = Main.GameTime;
                     ShowMessage(number, r, g, b);
                     number--;
                 }
             }
 
-            API.PlaySoundFrontend(-1, goAudioName, goAudioRef, true);
+            PlaySoundFrontend(-1, goAudioName, goAudioRef, true);
             ShowMessage("CNTDWN_GO", r, g, b);
 
             Dispose();
@@ -60,7 +60,7 @@ namespace ScaleformUI.Scaleforms
         {
             if (_sc is not null) return;
 
-            API.RequestScriptAudioBank("HUD_321_GO", false);
+            RequestScriptAudioBank("HUD_321_GO", false);
             _sc = new ScaleformWideScreen(SCALEFORM_NAME);
             int timeout = 1000;
             int start = Main.GameTime;

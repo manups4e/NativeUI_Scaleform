@@ -1,6 +1,8 @@
 ﻿using CitizenFX.Core;
 using CitizenFX.Core.Native;
-using CitizenFX.Core.UI;
+using CitizenFX.FiveM.GUI;
+using static CitizenFX.FiveM.Native.Natives;
+
 using ScaleformUI;
 using ScaleformUI.Elements;
 using ScaleformUI.LobbyMenu;
@@ -15,6 +17,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
+using CitizenFX.FiveM;
 
 public class MenuExample : BaseScript
 {
@@ -22,12 +25,12 @@ public class MenuExample : BaseScript
     private string dish = "Banana";
     //private TimerBarPool _timerBarPool;
     private long txd;
-    private Random Random = new Random(API.GetGameTimer());
+    private Random Random = new Random(GetGameTimer());
     #region UIMenu
     public async void ExampleMenu()
     {
-        long _titledui = API.CreateDui("https://i.imgur.com/3yrFYbF.gif", 288, 130);
-        API.CreateRuntimeTextureFromDuiHandle(txd, "bannerbackground", API.GetDuiHandle(_titledui));
+        long _titledui = CreateDui("https://i.imgur.com/3yrFYbF.gif", 288, 130);
+        CreateRuntimeTextureFromDuiHandle(txd, "bannerbackground", GetDuiHandle(_titledui));
 
         // first true means add menu Glare scaleform to the menu
         // last true means it's using the alternative title style
@@ -127,7 +130,7 @@ public class MenuExample : BaseScript
                         break;
                     case 7:
                         const string CUSTOM_LABEL = "SCALEFORMUI_CUSTOM_LABEL";
-                        API.AddTextEntry(CUSTOM_LABEL, "ScaleformUI is the best solution!");
+                        AddTextEntry(CUSTOM_LABEL, "ScaleformUI is the best solution!");
                         ScaleformLabel scaleformLabel = CUSTOM_LABEL;
                         ScaleformUI.Main.BigMessageInstance.ShowMissionPassedMessage(scaleformLabel, manualDispose: uiCheckboxBigMessageManualDispose.Checked);
                         break;
@@ -143,8 +146,8 @@ public class MenuExample : BaseScript
         #endregion
 
         UIMenuCheckboxItem ketchupItem = new UIMenuCheckboxItem("~g~Scrolling animation enabled? ~b~in a very long label to ~o~test the text scrolling feature!", UIMenuCheckboxStyle.Tick, enabled, "Do you wish to enable the scrolling animation?");
-        long _paneldui = API.CreateDui("https://i.imgur.com/mH0Y65C.gif", 288, 160);
-        API.CreateRuntimeTextureFromDuiHandle(txd, "panelbackground", API.GetDuiHandle(_paneldui));
+        long _paneldui = CreateDui("https://i.imgur.com/mH0Y65C.gif", 288, 160);
+        CreateRuntimeTextureFromDuiHandle(txd, "panelbackground", GetDuiHandle(_paneldui));
         UIMissionDetailsPanel sidePanel = new UIMissionDetailsPanel(PanelSide.Right, "Side Panel", true, "scaleformui", "panelbackground");
         UIFreemodeDetailsItem detailItem1 = new UIFreemodeDetailsItem("Left Label", "RIGHT LABEL", ScaleformFonts.SIGNPAINTER_HOUSESCRIPT, ScaleformFonts.GTAV_TAXI_DIGITAL, BadgeIcon.BRIEFCASE, SColor.FromRandomValues());
         UIFreemodeDetailsItem detailItem2 = new UIFreemodeDetailsItem("Left Label", "RIGHT LABEL", ScaleformFonts.SIGNPAINTER_HOUSESCRIPT, ScaleformFonts.GTAV_TAXI_DIGITAL, BadgeIcon.MISSION_STAR, SColor.FromRandomValues());
@@ -1008,14 +1011,14 @@ public class MenuExample : BaseScript
     {
         RadialMenu menu = new RadialMenu();
 
-        long imgdui = API.CreateDui("https://giphy.com/embed/ckT59CvStmUsU", 64, 64);
-        API.CreateRuntimeTextureFromDuiHandle(txd, "item1", API.GetDuiHandle(imgdui));
+        long imgdui = CreateDui("https://giphy.com/embed/ckT59CvStmUsU", 64, 64);
+        CreateRuntimeTextureFromDuiHandle(txd, "item1", GetDuiHandle(imgdui));
 
-        long imgdui1 = API.CreateDui("https://giphy.com/embed/10bTCLE8GtHHS8", 96, 64);
-        API.CreateRuntimeTextureFromDuiHandle(txd, "item2", API.GetDuiHandle(imgdui1));
+        long imgdui1 = CreateDui("https://giphy.com/embed/10bTCLE8GtHHS8", 96, 64);
+        CreateRuntimeTextureFromDuiHandle(txd, "item2", GetDuiHandle(imgdui1));
 
-        long imgdui2 = API.CreateDui("https://giphy.com/embed/nHyZigjdO4hEodq9fv", 64, 64);
-        API.CreateRuntimeTextureFromDuiHandle(txd, "item3", API.GetDuiHandle(imgdui2));
+        long imgdui2 = CreateDui("https://giphy.com/embed/nHyZigjdO4hEodq9fv", 64, 64);
+        CreateRuntimeTextureFromDuiHandle(txd, "item3", GetDuiHandle(imgdui2));
 
         SegmentItem item = new SegmentItem("This is the label!", "~BLIP_INFO_ICON~ This is the description.. it's multiline so it can be very long!", "scaleformui", "item1", 64, 64, SColor.HUD_Freemode);
         SegmentItem item1 = new SegmentItem("It's so long it scrolls automatically! Isn't this amazing?", "~BLIP_INFO_ICON~ This is the description.. it's multiline so it can be very long!", "scaleformui", "item2", 96, 64, SColor.HUD_Green);

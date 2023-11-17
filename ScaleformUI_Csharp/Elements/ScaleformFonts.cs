@@ -1,4 +1,5 @@
 ﻿using CitizenFX.Core.Native;
+using static CitizenFX.FiveM.Native.Natives;
 
 namespace ScaleformUI.Elements
 {
@@ -67,8 +68,8 @@ namespace ScaleformUI.Elements
         public static ItemFont RegisterFont(string gfxName, string fontName)
         {
             ItemFont ret = new ItemFont(fontName);
-            API.RegisterFontFile(gfxName);
-            ret.FontID = API.RegisterFontId(fontName);
+            RegisterFontFile(gfxName);
+            ret.FontID = RegisterFontId(fontName);
             return ret;
         }
     }

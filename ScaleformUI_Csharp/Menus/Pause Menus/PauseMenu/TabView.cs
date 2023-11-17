@@ -1,8 +1,9 @@
 ﻿using CitizenFX.Core;
+using CitizenFX.FiveM;
 using ScaleformUI.Menu;
 using ScaleformUI.PauseMenus;
 using ScaleformUI.Scaleforms;
-using static CitizenFX.Core.Native.API;
+using static CitizenFX.FiveM.Native.Natives;
 
 namespace ScaleformUI.PauseMenu
 {
@@ -1090,6 +1091,7 @@ namespace ScaleformUI.PauseMenu
         }
 
         private bool firstTick = true;
+        private bool eventBool = false;
         private int eventType = 0;
         private int itemId = 0;
         private int context = 0;
@@ -1108,7 +1110,7 @@ namespace ScaleformUI.PauseMenu
             SetInputExclusive(2, 237);
             SetInputExclusive(2, 238);
 
-            bool successHeader = GetScaleformMovieCursorSelection(Main.PauseMenu._header.Handle, ref eventType, ref context, ref itemId, ref unused);
+            bool successHeader = GetScaleformMovieCursorSelection(Main.PauseMenu._header.Handle, ref eventBool, ref eventType, ref context, ref itemId);
             if (successHeader)
             {
                 switch (eventType)
@@ -1157,7 +1159,7 @@ namespace ScaleformUI.PauseMenu
                 }
             }
 
-            bool successPause = GetScaleformMovieCursorSelection(Main.PauseMenu._pause.Handle, ref eventType, ref context, ref itemId, ref unused);
+            bool successPause = GetScaleformMovieCursorSelection(Main.PauseMenu._header.Handle, ref eventBool, ref eventType, ref context, ref itemId);
             if (successPause)
             {
                 switch (eventType)

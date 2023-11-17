@@ -1,8 +1,10 @@
 ﻿using CitizenFX.Core;
 using CitizenFX.Core.Native;
-using CitizenFX.Core.UI;
+using CitizenFX.FiveM.GUI;
+using static CitizenFX.FiveM.Native.Natives;
 using ScaleformUI.Menu;
 using System.Drawing;
+using CitizenFX.FiveM;
 
 namespace ScaleformUI.Scaleforms
 {
@@ -55,7 +57,7 @@ namespace ScaleformUI.Scaleforms
     {
         public event OnInstructionControlSelected OnControlSelected;
         public string Text { get; set; }
-        public bool IsUsingController => !API.IsUsingKeyboard(2);
+        public bool IsUsingController => !IsUsingKeyboard(2);
 
         public UIMenuItem ItemBind { get; private set; }
 
@@ -169,9 +171,9 @@ namespace ScaleformUI.Scaleforms
                     for (int i = GamepadButtons.Count - 1; i > -1; i--)
                     {
                         if (i == 0)
-                            retVal += API.GetControlInstructionalButton(2, (int)GamepadButtons[i], 1);
+                            retVal += GetControlInstructionalButton(2, (int)GamepadButtons[i], true);
                         else
-                            retVal += API.GetControlInstructionalButton(2, (int)GamepadButtons[i], 1) + "%";
+                            retVal += GetControlInstructionalButton(2, (int)GamepadButtons[i], true) + "%";
                     }
                 }
                 else
@@ -179,21 +181,21 @@ namespace ScaleformUI.Scaleforms
                     for (int i = KeyboardButtons.Count - 1; i > -1; i--)
                     {
                         if (i == 0)
-                            retVal += API.GetControlInstructionalButton(2, (int)KeyboardButtons[i], 1);
+                            retVal += GetControlInstructionalButton(2, (int)KeyboardButtons[i], true);
                         else
-                            retVal += API.GetControlInstructionalButton(2, (int)KeyboardButtons[i], 1) + "%";
+                            retVal += GetControlInstructionalButton(2, (int)KeyboardButtons[i], true) + "%";
                     }
                 }
                 return retVal;
             }
             else if (InputButton != InputGroup.UNUSED) return $"~{InputButton}~";
 
-            return IsUsingController ? API.GetControlInstructionalButton(2, (int)GamepadButton, 1) : API.GetControlInstructionalButton(2, (int)KeyboardButton, 1);
+            return IsUsingController ? GetControlInstructionalButton(2, (int)GamepadButton, true) : GetControlInstructionalButton(2, (int)KeyboardButton, true);
         }
 
         public void InvokeEvent(InstructionalButton control)
         {
-            if (API.UpdateOnscreenKeyboard() == 0) return;
+            if (UpdateOnscreenKeyboard() == 0) return;
             OnControlSelected?.Invoke(control);
         }
     }
@@ -401,7 +403,7 @@ namespace ScaleformUI.Scaleforms
         /// </summary>
         public void Draw()
         {
-            API.SetScriptGfxDrawBehindPausemenu(true);
+            SetScriptGfxDrawBehindPausemenu(true);
             _sc.Render2D();
         }
 
@@ -411,7 +413,7 @@ namespace ScaleformUI.Scaleforms
         /// <param name="Position">the values for variation must be in 0.000 (One thousandth) decimal places for precision</param>
         public void Draw(PointF Position)
         {
-            API.DrawScaleformMovie(_sc.Handle, 0.5f - Position.X, 0.5f - Position.Y, 1f, 1f, 255, 255, 255, 255, 0);
+            DrawScaleformMovie(_sc.Handle, 0.5f - Position.X, 0.5f - Position.Y, 1f, 1f, 255, 255, 255, 255, 0);
         }
 
         internal void Update()
@@ -419,7 +421,7 @@ namespace ScaleformUI.Scaleforms
             if (_sc == null)
                 Load();
             if (ControlButtons.Count == 0) return;
-            if (API.IsUsingKeyboard(2))
+            if (IsUsingKeyboard(2))
             {
                 if (!_isUsingKeyboard)
                 {
@@ -456,7 +458,7 @@ namespace ScaleformUI.Scaleforms
             Screen.Hud.HideComponentThisFrame(HudComponent.StreetName);
         }
 
-        public static bool IsControlJustPressed(Control control, PadCheck keyboardOnly = PadCheck.Any) => Game.IsControlJustPressed(2, control) && (keyboardOnly == PadCheck.Keyboard ? API.IsUsingKeyboard(2) : keyboardOnly != PadCheck.Controller || !API.IsUsingKeyboard(2));
+        public static bool IsControlJustPressed(Control control, PadCheck keyboardOnly = PadCheck.Any) => Game.IsControlJustPressed(2, control) && (keyboardOnly == PadCheck.Keyboard ? IsUsingKeyboard(2) : keyboardOnly != PadCheck.Controller || !IsUsingKeyboard(2));
 
         /// <summary>
         /// Updates the instructional button.

@@ -1,11 +1,12 @@
 ﻿using CitizenFX.Core;
-using CitizenFX.Core.UI;
+using CitizenFX.FiveM;
+using CitizenFX.FiveM.GUI;
 using ScaleformUI.Elements;
 using ScaleformUI.Menu;
 using ScaleformUI.Menus;
 using ScaleformUI.Scaleforms;
 using System.Drawing;
-using static CitizenFX.Core.Native.API;
+using static CitizenFX.FiveM.Native.Natives;
 
 namespace ScaleformUI.Radial
 {

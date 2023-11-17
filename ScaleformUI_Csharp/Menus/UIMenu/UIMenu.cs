@@ -1,11 +1,12 @@
 using CitizenFX.Core;
-using CitizenFX.Core.UI;
+using CitizenFX.FiveM;
+using CitizenFX.FiveM.GUI;
 using ScaleformUI.Elements;
 using ScaleformUI.Menus;
 using ScaleformUI.Scaleforms;
 using System.Drawing;
-using static CitizenFX.Core.Native.API;
-using Control = CitizenFX.Core.Control;
+using static CitizenFX.FiveM.Native.Natives;
+using Control = CitizenFX.FiveM.Control;
 
 namespace ScaleformUI.Menu
 {
@@ -1584,6 +1585,7 @@ namespace ScaleformUI.Menu
             }
         }
 
+        bool eventBool = false;
         int eventType = 0;
         int itemId = 0;
         int context = 0;
@@ -1619,7 +1621,7 @@ namespace ScaleformUI.Menu
             SetInputExclusive(2, 237);
             SetInputExclusive(2, 238);
 
-            bool success = GetScaleformMovieCursorSelection(Main.scaleformUI.Handle, ref eventType, ref context, ref itemId, ref unused);
+            bool success = GetScaleformMovieCursorSelection(Main.scaleformUI.Handle, ref eventBool, ref eventType, ref context, ref itemId);
 
             if (success && !isBuilding)
             {

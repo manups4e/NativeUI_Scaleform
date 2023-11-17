@@ -1,4 +1,4 @@
-﻿using CitizenFX.Core.Native;
+﻿using static CitizenFX.FiveM.Native.Natives;
 using ScaleformUI.Elements;
 using ScaleformUI.LobbyMenu;
 using ScaleformUI.Menus;
@@ -479,33 +479,33 @@ namespace ScaleformUI.Menu
                 if (descriptionHash != 0) descriptionHash = 0;
                 if (Parent != null && Parent.Visible && Parent.Pagination.IsItemVisible(Parent.MenuItems.IndexOf(this)))
                 {
-                    API.AddTextEntry($"menu_{BreadcrumbsHandler.CurrentDepth}_desc_{Parent.MenuItems.IndexOf(this)}", description);
-                    API.BeginScaleformMovieMethod(Main.scaleformUI.Handle, "UPDATE_ITEM_DESCRIPTION");
-                    API.ScaleformMovieMethodAddParamInt(Parent.Pagination.GetScaleformIndex(Parent.MenuItems.IndexOf(this)));
-                    API.BeginTextCommandScaleformString($"menu_{BreadcrumbsHandler.CurrentDepth}_desc_{Parent.MenuItems.IndexOf(this)}");
-                    API.EndTextCommandScaleformString_2();
-                    API.EndScaleformMovieMethod();
+                    AddTextEntry($"menu_{BreadcrumbsHandler.CurrentDepth}_desc_{Parent.MenuItems.IndexOf(this)}", description);
+                    BeginScaleformMovieMethod(Main.scaleformUI.Handle, "UPDATE_ITEM_DESCRIPTION");
+                    ScaleformMovieMethodAddParamInt(Parent.Pagination.GetScaleformIndex(Parent.MenuItems.IndexOf(this)));
+                    BeginTextCommandScaleformString($"menu_{BreadcrumbsHandler.CurrentDepth}_desc_{Parent.MenuItems.IndexOf(this)}");
+                    EndTextCommandScaleformString_2();
+                    EndScaleformMovieMethod();
                 }
                 if (ParentColumn != null && ParentColumn.Parent.Visible)
                 {
                     if (ParentColumn.Parent is MainView lobby)
                     {
-                        API.AddTextEntry($"lobbymenu_desc_{ParentColumn.Pagination.GetScaleformIndex(ParentColumn.Items.IndexOf(this))}", description);
-                        API.BeginScaleformMovieMethod(lobby._pause._lobby.Handle, "UPDATE_SETTINGS_ITEM_DESCRIPTION");
-                        API.ScaleformMovieMethodAddParamInt(ParentColumn.Pagination.GetScaleformIndex(ParentColumn.Items.IndexOf(this)));
-                        API.BeginTextCommandScaleformString($"lobbymenu_desc_{ParentColumn.Pagination.GetScaleformIndex(ParentColumn.Items.IndexOf(this))}");
-                        API.EndTextCommandScaleformString_2();
-                        API.EndScaleformMovieMethod();
+                        AddTextEntry($"lobbymenu_desc_{ParentColumn.Pagination.GetScaleformIndex(ParentColumn.Items.IndexOf(this))}", description);
+                        BeginScaleformMovieMethod(lobby._pause._lobby.Handle, "UPDATE_SETTINGS_ITEM_DESCRIPTION");
+                        ScaleformMovieMethodAddParamInt(ParentColumn.Pagination.GetScaleformIndex(ParentColumn.Items.IndexOf(this)));
+                        BeginTextCommandScaleformString($"lobbymenu_desc_{ParentColumn.Pagination.GetScaleformIndex(ParentColumn.Items.IndexOf(this))}");
+                        EndTextCommandScaleformString_2();
+                        EndScaleformMovieMethod();
                     }
                     else if (ParentColumn.Parent is TabView pause)
                     {
-                        API.AddTextEntry($"pausemenu_{ParentColumn.ParentTab}_desc_{ParentColumn.Pagination.GetScaleformIndex(ParentColumn.Items.IndexOf(this))}", description);
-                        API.BeginScaleformMovieMethod(pause._pause._pause.Handle, "UPDATE_PLAYERS_TAB_SETTINGS_ITEM_DESCRIPTION");
-                        API.ScaleformMovieMethodAddParamInt(ParentColumn.ParentTab);
-                        API.ScaleformMovieMethodAddParamInt(ParentColumn.Pagination.GetScaleformIndex(ParentColumn.Items.IndexOf(this)));
-                        API.BeginTextCommandScaleformString($"pausemenu_{ParentColumn.ParentTab}_desc_{ParentColumn.Pagination.GetScaleformIndex(ParentColumn.Items.IndexOf(this))}");
-                        API.EndTextCommandScaleformString_2();
-                        API.EndScaleformMovieMethod();
+                        AddTextEntry($"pausemenu_{ParentColumn.ParentTab}_desc_{ParentColumn.Pagination.GetScaleformIndex(ParentColumn.Items.IndexOf(this))}", description);
+                        BeginScaleformMovieMethod(pause._pause._pause.Handle, "UPDATE_PLAYERS_TAB_SETTINGS_ITEM_DESCRIPTION");
+                        ScaleformMovieMethodAddParamInt(ParentColumn.ParentTab);
+                        ScaleformMovieMethodAddParamInt(ParentColumn.Pagination.GetScaleformIndex(ParentColumn.Items.IndexOf(this)));
+                        BeginTextCommandScaleformString($"pausemenu_{ParentColumn.ParentTab}_desc_{ParentColumn.Pagination.GetScaleformIndex(ParentColumn.Items.IndexOf(this))}");
+                        EndTextCommandScaleformString_2();
+                        EndScaleformMovieMethod();
                     }
                 }
             }
@@ -523,33 +523,33 @@ namespace ScaleformUI.Menu
                     description = string.Empty;
                 if (Parent != null && Parent.Visible && Parent.Pagination.IsItemVisible(Parent.MenuItems.IndexOf(this)))
                 {
-                    API.BeginScaleformMovieMethod(Main.scaleformUI.Handle, "UPDATE_ITEM_DESCRIPTION");
-                    API.ScaleformMovieMethodAddParamInt(Parent.Pagination.GetScaleformIndex(Parent.MenuItems.IndexOf(this)));
-                    API.BeginTextCommandScaleformString("STRTNM1");
-                    API.AddTextComponentSubstringTextLabelHashKey(descriptionHash);
-                    API.EndTextCommandScaleformString_2();
-                    API.EndScaleformMovieMethod();
+                    BeginScaleformMovieMethod(Main.scaleformUI.Handle, "UPDATE_ITEM_DESCRIPTION");
+                    ScaleformMovieMethodAddParamInt(Parent.Pagination.GetScaleformIndex(Parent.MenuItems.IndexOf(this)));
+                    BeginTextCommandScaleformString("STRTNM1");
+                    AddTextComponentSubstringTextLabelHashKey(descriptionHash);
+                    EndTextCommandScaleformString_2();
+                    EndScaleformMovieMethod();
                 }
                 if (ParentColumn != null && ParentColumn.Parent.Visible)
                 {
                     if (ParentColumn.Parent is MainView lobby)
                     {
-                        API.BeginScaleformMovieMethod(lobby._pause._lobby.Handle, "UPDATE_SETTINGS_ITEM_DESCRIPTION");
-                        API.ScaleformMovieMethodAddParamInt(ParentColumn.Pagination.GetScaleformIndex(ParentColumn.Items.IndexOf(this)));
-                        API.BeginTextCommandScaleformString("STRTNM1");
-                        API.AddTextComponentSubstringTextLabelHashKey(descriptionHash);
-                        API.EndTextCommandScaleformString_2();
-                        API.EndScaleformMovieMethod();
+                        BeginScaleformMovieMethod(lobby._pause._lobby.Handle, "UPDATE_SETTINGS_ITEM_DESCRIPTION");
+                        ScaleformMovieMethodAddParamInt(ParentColumn.Pagination.GetScaleformIndex(ParentColumn.Items.IndexOf(this)));
+                        BeginTextCommandScaleformString("STRTNM1");
+                        AddTextComponentSubstringTextLabelHashKey(descriptionHash);
+                        EndTextCommandScaleformString_2();
+                        EndScaleformMovieMethod();
                     }
                     else if (ParentColumn.Parent is TabView pause)
                     {
-                        API.BeginScaleformMovieMethod(pause._pause._pause.Handle, ""); // da aggiungere
-                        API.ScaleformMovieMethodAddParamInt(ParentColumn.ParentTab);
-                        API.ScaleformMovieMethodAddParamInt(ParentColumn.Pagination.GetScaleformIndex(ParentColumn.Items.IndexOf(this)));
-                        API.BeginTextCommandScaleformString("STRTNM1");
-                        API.AddTextComponentSubstringTextLabelHashKey(descriptionHash);
-                        API.EndTextCommandScaleformString_2();
-                        API.EndScaleformMovieMethod();
+                        BeginScaleformMovieMethod(pause._pause._pause.Handle, ""); // da aggiungere
+                        ScaleformMovieMethodAddParamInt(ParentColumn.ParentTab);
+                        ScaleformMovieMethodAddParamInt(ParentColumn.Pagination.GetScaleformIndex(ParentColumn.Items.IndexOf(this)));
+                        BeginTextCommandScaleformString("STRTNM1");
+                        AddTextComponentSubstringTextLabelHashKey(descriptionHash);
+                        EndTextCommandScaleformString_2();
+                        EndScaleformMovieMethod();
                     }
                 }
             }

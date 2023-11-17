@@ -1,10 +1,11 @@
 ﻿using CitizenFX.Core;
-using CitizenFX.Core.Native;
+using static CitizenFX.FiveM.Native.Natives;
 using ScaleformUI.Menu;
 using ScaleformUI.Menus;
 using ScaleformUI.PauseMenus;
 using ScaleformUI.Radial;
 using ScaleformUI.Radio;
+using CitizenFX.FiveM;
 
 namespace ScaleformUI
 {
@@ -23,7 +24,7 @@ namespace ScaleformUI
         {
             get
             {
-                int handle = API.PlayerPedId();
+                int handle = PlayerPedId();
 
                 if (_ped is null || handle != _ped.Handle)
                 {

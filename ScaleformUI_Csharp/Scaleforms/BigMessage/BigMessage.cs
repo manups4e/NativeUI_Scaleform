@@ -1,4 +1,5 @@
 ﻿using CitizenFX.Core;
+using CitizenFX.FiveM;
 using ScaleformUI.Elements;
 
 namespace ScaleformUI.Scaleforms
@@ -41,7 +42,7 @@ namespace ScaleformUI.Scaleforms
             if (ManualDispose)
             {
                 _sc.CallFunction(Transition, TransitionDuration, TransitionAutoExpansion);
-                await BaseScript.Delay((int)((TransitionDuration * .5f) * 1000));
+                await BaseScript.Delay((uint)(int)((TransitionDuration * .5f) * 1000));
                 ManualDispose = false;
             }
 

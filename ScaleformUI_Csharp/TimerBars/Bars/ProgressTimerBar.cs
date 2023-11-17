@@ -1,7 +1,8 @@
 ﻿
+using CitizenFX.Core;
 using ScaleformUI.Elements;
 using System.Drawing;
-using Font = CitizenFX.Core.UI.Font;
+using Font = CitizenFX.FiveM.GUI.Font;
 
 namespace ScaleformUI
 {
@@ -22,32 +23,32 @@ namespace ScaleformUI
         {
             BackgroundColor = SColor.HUD_Reddark;
             ForegroundColor = SColor.HUD_Red;
-            _background = new UIResRectangle(new PointF(0, 0), new SizeF(150, 15), BackgroundColor.ToColor());
-            _foreground = new UIResRectangle(new PointF(0, 0), new SizeF(0, 15), ForegroundColor.ToColor());
+            _background = new UIResRectangle(new Vector2(0, 0), new Vector2(150, 15), new CitizenFX.Core.Color(BackgroundColor.ToColor().ToArgb()));
+            _foreground = new UIResRectangle(new Vector2(0, 0), new Vector2(0, 15), new CitizenFX.Core.Color(BackgroundColor.ToColor().ToArgb()));
         }
 
         public ProgressTimerBar(string label, Font labelFont) : base(label, labelFont)
         {
             BackgroundColor = SColor.HUD_Reddark;
             ForegroundColor = SColor.HUD_Red;
-            _background = new UIResRectangle(new PointF(0, 0), new SizeF(150, 15), BackgroundColor.ToColor());
-            _foreground = new UIResRectangle(new PointF(0, 0), new SizeF(0, 15), ForegroundColor.ToColor());
+            _background = new UIResRectangle(new Vector2(0, 0), new Vector2(150, 15), new CitizenFX.Core.Color(BackgroundColor.ToColor().ToArgb()));
+            _foreground = new UIResRectangle(new Vector2(0, 0), new Vector2(0, 15), new CitizenFX.Core.Color(BackgroundColor.ToColor().ToArgb()));
         }
 
-        public ProgressTimerBar(string label, Color background, Color foreground) : base(label)
+        public ProgressTimerBar(string label, System.Drawing.Color background, System.Drawing.Color foreground) : base(label)
         {
             BackgroundColor = SColor.FromColor(background);
             ForegroundColor = SColor.FromColor(foreground);
-            _background = new UIResRectangle(new PointF(0, 0), new SizeF(150, 15), BackgroundColor.ToColor());
-            _foreground = new UIResRectangle(new PointF(0, 0), new SizeF(0, 15), ForegroundColor.ToColor());
+            _background = new UIResRectangle(new Vector2(0, 0), new Vector2(150, 15), new CitizenFX.Core.Color(BackgroundColor.ToColor().ToArgb()));
+            _foreground = new UIResRectangle(new Vector2(0, 0), new Vector2(0, 15), new CitizenFX.Core.Color(ForegroundColor.ToColor().ToArgb()));
         }
 
-        public ProgressTimerBar(string label, Color background, Color foreground, Font labelFont) : base(label, labelFont)
+        public ProgressTimerBar(string label, System.Drawing.Color background, System.Drawing.Color foreground, Font labelFont) : base(label, labelFont)
         {
             BackgroundColor = SColor.FromColor(background);
             ForegroundColor = SColor.FromColor(foreground);
-            _background = new UIResRectangle(new PointF(0, 0), new SizeF(150, 15), BackgroundColor.ToColor());
-            _foreground = new UIResRectangle(new PointF(0, 0), new SizeF(0, 15), ForegroundColor.ToColor());
+            _background = new UIResRectangle(new Vector2(0, 0), new Vector2(150, 15), new CitizenFX.Core.Color(BackgroundColor.ToColor().ToArgb()));
+            _foreground = new UIResRectangle(new Vector2(0, 0), new Vector2(0, 15), new CitizenFX.Core.Color(BackgroundColor.ToColor().ToArgb()));
         }
 
         public override void Draw(int interval)
@@ -57,16 +58,16 @@ namespace ScaleformUI
 
             base.Draw(interval);
 
-            PointF start = new PointF((int)res.Width - safe.X - 160, (int)res.Height - safe.Y - (28 + (4 * interval)));
+            Vector2 start = new Vector2((int)res.Width - safe.X - 160, (int)res.Height - safe.Y - (28 + (4 * interval)));
 
             _background.Position = start;
             _foreground.Position = start;
 
-            _foreground.Size = new SizeF(150 * Percentage, 15);
+            _foreground.Size = new Vector2(150 * Percentage, 15);
 
             // In case someone decides to change colors while drawing..
-            _background.Color = BackgroundColor.ToColor();
-            _foreground.Color = ForegroundColor.ToColor();
+            _background.Color = new CitizenFX.Core.Color(BackgroundColor.ToColor().ToArgb());
+            _foreground.Color = new CitizenFX.Core.Color(BackgroundColor.ToColor().ToArgb());
 
             _background.Draw();
             _foreground.Draw();

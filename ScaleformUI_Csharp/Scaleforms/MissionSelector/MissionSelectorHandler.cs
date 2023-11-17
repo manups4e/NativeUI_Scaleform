@@ -1,5 +1,6 @@
 ﻿using CitizenFX.Core;
-using CitizenFX.Core.Native;
+using CitizenFX.FiveM;
+using static CitizenFX.FiveM.Native.Natives;
 
 namespace ScaleformUI.Scaleforms
 {
@@ -102,14 +103,14 @@ namespace ScaleformUI.Scaleforms
             {
                 if (!string.IsNullOrWhiteSpace(card.Txd))
                 {
-                    while (!API.HasStreamedTextureDictLoaded(card.Txd))
+                    while (!HasStreamedTextureDictLoaded(card.Txd))
                     {
                         await BaseScript.Delay(0);
-                        API.RequestStreamedTextureDict(card.Txd, true);
+                        RequestStreamedTextureDict(card.Txd, true);
                     }
                 }
                 SetGridItem(Cards.IndexOf(card), card.Title, card.Txd, card.Txn, 1, 0, (int)card.Icon, false, card.RpMultiplier, card.CashMultiplier, false, (int)card.IconColor, card.ApMultiplier);
-                API.SetStreamedTextureDictAsNoLongerNeeded(card.Txd);
+                SetStreamedTextureDictAsNoLongerNeeded(card.Txd);
             }
 
             foreach (JobSelectionButton button in Buttons)
@@ -162,7 +163,7 @@ namespace ScaleformUI.Scaleforms
         {
             Votes[idx]++;
             int r = 0, g = 0, b = 0, a = 0;
-            API.GetHudColour((int)color, ref r, ref g, ref b, ref a);
+            GetHudColour((int)color, ref r, ref g, ref b, ref a);
             _sc.CallFunction("SHOW_PLAYER_VOTE", idx, playerName, r, g, b);
             int votes = Votes.ToList().Sum();
             SetVotes(votes);
@@ -180,6 +181,7 @@ namespace ScaleformUI.Scaleforms
             while (!_sc.IsLoaded && Main.GameTime - start < timeout) await BaseScript.Delay(0);
         }
 
+        bool eventBool = false;
         int eventType = 0;
         int itemId = 0;
         int context = 0;
@@ -190,15 +192,15 @@ namespace ScaleformUI.Scaleforms
             Game.DisableAllControlsThisFrame(0);
             Game.DisableAllControlsThisFrame(1);
             Game.DisableAllControlsThisFrame(2);
-            if (API.IsUsingKeyboard(2))
+            if (IsUsingKeyboard(2))
             {
-                API.SetMouseCursorActiveThisFrame();
-                API.SetInputExclusive(2, 239);
-                API.SetInputExclusive(2, 240);
-                API.SetInputExclusive(2, 237);
-                API.SetInputExclusive(2, 238);
+                SetMouseCursorActiveThisFrame();
+                SetInputExclusive(2, 239);
+                SetInputExclusive(2, 240);
+                SetInputExclusive(2, 237);
+                SetInputExclusive(2, 238);
 
-                bool success = API.GetScaleformMovieCursorSelection(_sc.Handle, ref eventType, ref context, ref itemId, ref unused);
+                bool success = GetScaleformMovieCursorSelection(_sc.Handle, ref eventBool, ref eventType, ref context, ref itemId);
                 if (success)
                 {
                     switch (eventType)

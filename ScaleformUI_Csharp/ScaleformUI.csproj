@@ -28,7 +28,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="CitizenFX.Core.Client" Version="1.0.6370" ExcludeAssets="runtime" />
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <None Include="..\LICENSE.txt">
       <Pack>True</Pack>
@@ -41,6 +40,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="CitizenFX.Core">
+      <HintPath>..\..\vMenu Revamped\CitizenFX.Natives\Client\CitizenFX.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="CitizenFX.FiveM">
+      <HintPath>..\..\vMenu Revamped\CitizenFX.Natives\Client\CitizenFX.FiveM.dll</HintPath>
+    </Reference>
+    <Reference Include="CitizenFX.FiveM.Native">
+      <HintPath>..\..\vMenu Revamped\CitizenFX.Natives\Client\CitizenFX.FiveM.Native.dll</HintPath>
+    </Reference>
     <Reference Include="System.Net.Http" />
   </ItemGroup>
 

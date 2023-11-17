@@ -1,9 +1,10 @@
 ﻿using CitizenFX.Core;
 using CitizenFX.Core.Native;
+using CitizenFX.FiveM;
 using ScaleformUI.Menu;
 using ScaleformUI.PauseMenus;
 using ScaleformUI.Scaleforms;
-using static CitizenFX.Core.Native.API;
+using static CitizenFX.FiveM.Native.Natives;
 
 namespace ScaleformUI.LobbyMenu
 {
@@ -142,7 +143,7 @@ namespace ScaleformUI.LobbyMenu
             if (listCol[f].Type != "players")
             {
                 if (PlayersColumn != null && PlayersColumn.Items.Count > 0 && !PlayersColumn.Items[PlayersColumn.CurrentSelection].KeepPanelVisible)
-                    API.ClearPedInPauseMenu();
+                    ClearPedInPauseMenu();
             }
             focusLevel = f;
             if (listCol[focusLevel].Type == "panel")
@@ -413,10 +414,11 @@ namespace ScaleformUI.LobbyMenu
             }
         }
 
+        private bool eventBool = false;
         private int eventType = 0;
         private int itemId = 0;
         private int context = 0;
-        private int unused = 0;
+        //private int unused = 0;
         private bool cursorPressed;
         public override async void ProcessMouse()
         {
@@ -430,7 +432,7 @@ namespace ScaleformUI.LobbyMenu
             SetInputExclusive(2, 237);
             SetInputExclusive(2, 238);
 
-            bool success = GetScaleformMovieCursorSelection(_pause._lobby.Handle, ref eventType, ref context, ref itemId, ref unused);
+            bool success = GetScaleformMovieCursorSelection(_pause._lobby.Handle, ref eventBool, ref eventType, ref context, ref itemId);
             if (success)
             {
                 switch (eventType)

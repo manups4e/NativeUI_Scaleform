@@ -1,10 +1,14 @@
 ﻿using CitizenFX.Core;
 using CitizenFX.Core.Native;
-using CitizenFX.Core.UI;
+using CitizenFX.FiveM;
+using CitizenFX.FiveM.GUI;
+using CitizenFX.FiveM.Native;
 using ScaleformUI.Elements;
 using ScaleformUI.Scaleforms;
-using static CitizenFX.Core.Native.API;
-using Font = CitizenFX.Core.UI.Font;
+using static CitizenFX.FiveM.Native.Natives;
+using Font = CitizenFX.FiveM.GUI.Font;
+using CitizenFX.Shared.Native;
+
 namespace ScaleformUI
 {
     public enum BusySpinner
@@ -175,7 +179,7 @@ namespace ScaleformUI
             Tuple<int, string> mug = await GetPedMugshotAsync(Game.PlayerPed);
             BeginTextCommandThefeedPost("PS_UPDATE");
             AddTextComponentInteger(newProgress);
-            Function.Call(Hash.END_TEXT_COMMAND_THEFEED_POST_STATS, "ScaleformUIStatsNotification", 2, newProgress, oldProgress, false, mug.Item2, mug.Item2);
+            EndTextCommandThefeedPostStats("ScaleformUIStatsNotification", 2, false, newProgress, false, mug.Item2, mug.Item2);
             int not = EndTextCommandThefeedPostTicker(blink, showBrief);
             UnregisterPedheadshot(mug.Item1);
             return new ScaleformUINotification(not);
@@ -208,7 +212,7 @@ namespace ScaleformUI
             Tuple<int, string> mug = await GetPedMugshotAsync(leftPed);
             Tuple<int, string> otherMug = await GetPedMugshotAsync(rightPed);
             BeginTextCommandThefeedPost("");
-            return new(Function.Call<int>(Hash.END_TEXT_COMMAND_THEFEED_POST_VERSUS_TU, mug.Item2, mug.Item2, leftScore, otherMug.Item2, otherMug.Item2, rightScore, leftColor, rightColor));
+            return new(EndTextCommandThefeedPostVersusTu(mug.Item2, mug.Item2, leftScore, otherMug.Item2, otherMug.Item2, rightScore));
         }
 
         private static void _drawText3d(Vector3 campos, float camfov, string text, Vector3 coord, SColor color, Font font = Font.ChaletComprimeCologne, float scale = 17f)
