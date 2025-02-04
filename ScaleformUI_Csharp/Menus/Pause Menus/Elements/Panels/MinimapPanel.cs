@@ -242,7 +242,8 @@ namespace ScaleformUI.PauseMenus.Elements.Panels
         {
             localCoronaMapStage = 0;
             enabled = false;
-            N_0x2de6c5e2e996f178(1);
+            N_0x2de6c5e2e996f178(0);
+            SetPoliceRadarBlips(true);
             DisplayRadar(IsRadarVisible);
             RaceGalleryFullscreen(false);
             ClearRaceGalleryBlips();

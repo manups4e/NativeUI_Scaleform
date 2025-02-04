@@ -242,6 +242,7 @@ end
 function MinimapPanel:Dispose()
     self.localMapStage = -1;
     self.enabled = false;
+    SetPoliceRadarBlips(true);
     PauseToggleFullscreenMap(false);
     DisplayRadar(self.IsRadarVisible);
     RaceGalleryFullscreen(false);
