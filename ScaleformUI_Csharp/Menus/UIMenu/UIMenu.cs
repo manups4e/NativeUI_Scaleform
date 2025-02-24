@@ -2037,12 +2037,18 @@ namespace ScaleformUI.Menu
             if (itemless) throw new("ScaleformUI - You can't compare or sort an itemless menu");
             try
             {
-                MenuItems[CurrentSelection].Selected = false;
                 _unfilteredMenuItems = MenuItems.ToList();
+                var filteredItems = MenuItems.Where(predicate.Invoke).ToList();
+                if (filteredItems.Count == 0)
+                {
+                    Debug.WriteLine($"^1ScaleformUI - No items were found, resetting the filter");
+                    return;
+                }
+                MenuItems[CurrentSelection].Selected = false;
                 Clear();
-                MenuItems = _unfilteredMenuItems.Where(predicate.Invoke).ToList();
-                if (MenuItems.Count == 0)
-                    throw new Exception("Predicate resulted in a filtering of 0 items.. menu cannot rebuild!");
+                MenuItems = filteredItems;
+                topEdge = 0;
+                CurrentSelection = 0;
                 BuildUpMenuAsync(true);
             }
             catch (Exception ex)
@@ -2288,6 +2294,8 @@ namespace ScaleformUI.Menu
         public virtual void MenuCloseEv(UIMenu menu)
         {
             OnMenuClose?.Invoke(menu);
+            if (menu._unfilteredMenuItems.Count > 0)
+                menu.ResetFilter();
         }
 
         internal virtual void ColorPanelChange(UIMenuItem item, UIMenuColorPanel panel, int index)
